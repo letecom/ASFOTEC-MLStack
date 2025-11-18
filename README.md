@@ -76,9 +76,14 @@ ASFOTEC-MLStack
 ├── apps/
 │   ├── api/             # API FastAPI complète
 │   └── ui/              # Dashboard UI (Next.js/Tailwind)
-│       ├── app/         # Pages & Layouts
-│       ├── components/  # Design System (Card, Button, Charts...)
-│       └── lib/         # API Client & Utils
+├── docs/                # Documentation complète
+│   ├── ARCHITECTURE.md
+│   ├── MLOPS_PIPELINE.md
+│   ├── TRAINING_PIPELINE.md
+│   ├── API_REFERENCE.md
+│   ├── RAG_DESIGN.md
+│   ├── DEPLOY_CLOUD_RUN.md
+│   └── LOCAL_DEV_GUIDE.md
 ├── mlops/               # Training pipeline
 │   ├── training/
 │   ├── eval/
@@ -173,7 +178,7 @@ Le projet est déjà prêt pour :
 - CI/CD GitHub Actions
 - Terraform IaC
 
-Demande si tu veux un fichier : `DEPLOY_CLOUD_RUN.md`.
+Consultez `docs/DEPLOY_CLOUD_RUN.md` pour plus de détails.
 
 ---
 
