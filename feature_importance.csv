@@ -1,0 +1,19 @@
+feature,importance
+num__tenure,234
+cat__InternetService_Fiber optic,157
+num__MonthlyCharges,45
+cat__OnlineBackup_Yes,21
+cat__StreamingMovies_Yes,18
+cat__gender_Male,8
+num__TotalCharges,7
+cat__OnlineSecurity_Yes,5
+cat__MultipleLines_Yes,4
+cat__TechSupport_Yes,3
+cat__StreamingTV_Yes,2
+cat__PaymentMethod_Electronic check,1
+cat__DeviceProtection_Yes,1
+cat__PaymentMethod_Mailed check,0
+cat__Contract_One year,0
+cat__PaperlessBilling_Yes,0
+cat__Partner_Yes,0
+cat__Dependents_Yes,0

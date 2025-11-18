@@ -1,0 +1,21 @@
+tenure,MonthlyCharges,TotalCharges,Contract,PaperlessBilling,PaymentMethod,InternetService,OnlineSecurity,OnlineBackup,DeviceProtection,TechSupport,StreamingTV,StreamingMovies,gender,SeniorCitizen,Partner,Dependents,PhoneService,MultipleLines
+34,53.85,1840.75,One year,No,Mailed check,DSL,Yes,No,Yes,Yes,Yes,Yes,Male,No,No,Yes,Yes,Yes
+34,53.85,1840.75,One year,No,Mailed check,DSL,Yes,No,Yes,Yes,Yes,Yes,Male,No,No,Yes,Yes,Yes
+2,22.9,22.9,Month-to-month,Yes,Electronic check,DSL,Yes,No,No,Yes,Yes,Yes,Male,No,Yes,Yes,Yes,No
+2,22.9,22.9,Month-to-month,Yes,Electronic check,DSL,Yes,No,No,Yes,Yes,Yes,Male,No,Yes,Yes,Yes,No
+2,22.9,22.9,Month-to-month,Yes,Electronic check,DSL,Yes,No,No,Yes,Yes,Yes,Male,No,Yes,Yes,Yes,No
+8,70.4,499.45,Month-to-month,Yes,Bank transfer (auto),Fiber optic,Yes,Yes,Yes,Yes,Yes,No,Male,No,Yes,No,Yes,Yes
+2,22.9,22.9,Month-to-month,Yes,Electronic check,DSL,Yes,No,No,Yes,Yes,Yes,Male,No,Yes,Yes,Yes,No
+1,29.85,29.85,Month-to-month,Yes,Electronic check,DSL,No,No,No,Yes,No,No,Female,No,Yes,No,Yes,No
+2,70.7,151.65,Month-to-month,Yes,Electronic check,DSL,No,No,Yes,No,No,No,Male,No,Yes,No,Yes,No
+2,70.7,151.65,Month-to-month,Yes,Electronic check,DSL,No,No,Yes,No,No,No,Male,No,Yes,No,Yes,No
+34,53.85,1840.75,One year,No,Mailed check,DSL,Yes,No,Yes,Yes,Yes,Yes,Male,No,No,Yes,Yes,Yes
+2,22.9,22.9,Month-to-month,Yes,Electronic check,DSL,Yes,No,No,Yes,Yes,Yes,Male,No,Yes,Yes,Yes,No
+34,53.85,1840.75,One year,No,Mailed check,DSL,Yes,No,Yes,Yes,Yes,Yes,Male,No,No,Yes,Yes,Yes
+1,29.85,29.85,Month-to-month,Yes,Electronic check,DSL,No,No,No,Yes,No,No,Female,No,Yes,No,Yes,No
+45,98.65,1237.85,One year,No,Bank transfer (auto),DSL,Yes,No,No,Yes,No,No,Female,No,No,No,Yes,No
+2,70.7,151.65,Month-to-month,Yes,Electronic check,DSL,No,No,Yes,No,No,No,Male,No,Yes,No,Yes,No
+45,98.65,1237.85,One year,No,Bank transfer (auto),DSL,Yes,No,No,Yes,No,No,Female,No,No,No,Yes,No
+2,22.9,22.9,Month-to-month,Yes,Electronic check,DSL,Yes,No,No,Yes,Yes,Yes,Male,No,Yes,Yes,Yes,No
+2,70.7,151.65,Month-to-month,Yes,Electronic check,DSL,No,No,Yes,No,No,No,Male,No,Yes,No,Yes,No
+8,70.4,499.45,Month-to-month,Yes,Bank transfer (auto),Fiber optic,Yes,Yes,Yes,Yes,Yes,No,Male,No,Yes,No,Yes,Yes

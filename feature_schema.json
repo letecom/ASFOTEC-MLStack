@@ -1,0 +1,24 @@
+{
+  "numerical_features": [
+    "tenure",
+    "MonthlyCharges",
+    "TotalCharges"
+  ],
+  "categorical_features": [
+    "Contract",
+    "PaymentMethod",
+    "InternetService",
+    "OnlineSecurity",
+    "OnlineBackup",
+    "DeviceProtection",
+    "TechSupport",
+    "StreamingTV",
+    "StreamingMovies",
+    "gender",
+    "PaperlessBilling",
+    "Partner",
+    "Dependents",
+    "PhoneService",
+    "MultipleLines"
+  ]
+}

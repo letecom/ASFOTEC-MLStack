@@ -1,0 +1,75 @@
+name: CI/CD ASFOTEC-MLStack
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+env:
+  MLFLOW_TRACKING_URI: http://localhost:5000  # Self-hosted runner assumed
+
+jobs:
+  lint_and_test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+    - run: pip install poetry
+    - run: poetry install
+    - run: poetry run ruff check .
+    - run: poetry run pytest tests/ -v
+
+  quality_gate:
+    needs: lint_and_test
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+    - run: |
+        pip install poetry mlflow
+        poetry export -f requirements.txt --output requirements.txt
+        pip install -r requirements.txt
+        # Run train/eval (headless MLflow)
+        poetry run python mlops/training/train_classifier.py
+        poetry run python mlops/eval_classifier.py
+        poetry run python mlops/quality_gate.py || exit 1  # Blocks if fail
+
+  build_and_push:
+    needs: quality_gate
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    steps:
+    - uses: actions/checkout@v4
+    - uses: google-github-actions/auth@v2
+      with:
+        credentials_json: ${{ secrets.GCP_SA_KEY }}
+    - uses: google-github-actions/setup-gcloud@v2
+    - run: gcloud auth configure-docker europe-west1-docker.pkg.dev
+    - run: docker build -t europe-west1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/asfotec-mlstack/api:latest .
+    - run: docker push europe-west1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/asfotec-mlstack/api:latest
+
+  deploy_cloud_run:
+    needs: build_and_push
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: google-github-actions/auth@v2
+      with:
+        credentials_json: ${{ secrets.GCP_SA_KEY }}
+    - id: terraform
+      uses: hashicorp/terraform-action@v2
+      with:
+        path: infra/terraform
+        args: apply -auto-approve -var="project_id=${{ secrets.GCP_PROJECT_ID }}"
+    - run: gcloud run deploy asfotec-mlstack-api --image europe-west1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/asfotec-mlstack/api:latest --region europe-west1 --allow-unauthenticated --set-env-vars=MLFLOW_TRACKING_URI=gs://${{ steps.terraform.outputs.gcs_bucket }}
+
+  notify:
+    needs: deploy_cloud_run
+    runs-on: ubuntu-latest
+    steps:
+    - run: echo "🚀 Deployed! Metrics from eval_report.json: $(cat mlops/artifacts/eval_report.json | jq '.test_f1')"  # LLM stub
