@@ -1,193 +1,160 @@
-# ASFOTEC-MLStack — Projet livré en 4h
-## Full MLOps + RAG + API + MLflow + Kafka + New Gen UI — production-grade demo
-
-Ce repository démontre ce qui peut être livré en 4 heures réelles, en suivant une méthodologie structurée :
-
-- **30 minutes** — Élaboration PRD et architecture cible
-- **1 heure** — Setup environnement IA + contexte Codex GPT-5.1
-- **2 heures** — Génération Argentic IA + correction + architecture MLOps/RAG
-- **30 minutes** — Intégration finale + stabilisation infra Docker + UI Polish
-
-**Le résultat :**
-Une stack d’entreprise complète, modulaire, stable, documentée, exploitable en production.
-
-<img width="1920" height="919" alt="ASFOTEC MLStack Control- localhost" src="https://github.com/user-attachments/assets/1dffa1c5-86e4-45f0-923e-7b3844c0365d" />
-
----
-
-## 🚀 1. Fonctionnalités principales
-
-### ✔ MLOps complet (training → eval → quality gate → MLflow Registry)
-- **Training LightGBM**
-- **Auto-évaluation**
-- **Quality Gate configurable**
-- **MLflow Tracking + Artifacts**
-- **MinIO comme S3 store**
-- **Fallback automatique** si MLflow est down
-
-### ✔ FastAPI production-ready
-Endpoints exposés :
-
-| Route | Description |
-|-------|-------------|
-| `GET /health` | Health check |
-| `POST /predict/classifier` | ML tabulaire (LightGBM) |
-| `POST /predict/llm` | RAG + LLM (mock provider) |
-| `GET /metrics/overview` | Stats logs/Postgres |
-| `GET /meta/architecture` | Architecture interne JSON |
-
-### ✔ RAG (Retrieval-Augmented Generation)
-- **Embeddings MiniLM**
-- **Stockage vectoriel :** Chroma
-- **Sources stockées** dans `rag/docs/*`
-- **Retour complet :** answer + sources + latency + tier
-
-### ✔ Kafka intégré pour audit ML
-- chaque prédiction → **Kafka Producer**
-- design prêt pour **Kafka Consumer** → Postgres
-
-### ✔ Interface Utilisateur (UI) - New Gen
-Une interface moderne et réactive pour piloter la stack :
-- **Framework :** Next.js 14 (App Router)
-- **Design System :** Tailwind CSS + Variables CSS (Shadcn/UI style)
-- **Composants :** Radix UI primitives (Dialog, Slot, etc.)
-- **Visualisation :** Recharts (Graphiques temps réel), Mermaid (Diagrammes d'architecture)
-- **State Management :** TanStack Query (React Query)
-- **Icons :** Lucide React
-
-### ✔ Docker Compose complet
-Services :
-- FastAPI
-- MLflow
-- Kafka + Zookeeper
-- MinIO
-- Postgres
-- UI (preview)
-
-**Un seul script suffit :**
-```bash
-bash asfotec_init.sh
-```
-
----
-
-## 📦 2. Structure du projet
-
-```
 ASFOTEC-MLStack
-├── apps/
-│   ├── api/             # API FastAPI complète
-│   └── ui/              # Dashboard UI (Next.js/Tailwind)
-├── docs/                # Documentation complète
-│   ├── ARCHITECTURE.md
-│   ├── MLOPS_PIPELINE.md
-│   ├── TRAINING_PIPELINE.md
-│   ├── API_REFERENCE.md
-│   ├── RAG_DESIGN.md
-│   ├── DEPLOY_CLOUD_RUN.md
-│   └── LOCAL_DEV_GUIDE.md
-├── mlops/               # Training pipeline
-│   ├── training/
-│   ├── eval/
-│   ├── quality_gate.py
-│   └── run_all.py
-├── rag/                 # RAG engine + docs
-├── infra/docker/        # Stack Docker complète
-├── scripts/             # Kafka consumer & outils
-├── Makefile             # Commandes rapides
-└── asfotec_init.sh      # Script orchestration complet
-```
+Production-Ready MLOps & RAG Architecture
+ASFOTEC-MLStack is a comprehensive, modular, and scalable Machine Learning infrastructure designed to demonstrate a full end-to-end enterprise lifecycle. It unifies traditional MLOps (Tabular), Generative AI (RAG), Real-time Streaming (Kafka), and a modern Observability Dashboard into a single, deployable stack.
 
----
+<img width="1920" height="919" alt="ASFOTEC MLStack Control- localhost" src="https://github.com/user-attachments/assets/95280555-4efd-418c-b6d6-3b0e70e3a027" />
 
-## ⚙️ 3. Installation rapide
+🏗 Architecture Overview
+This project implements a robust microservices architecture orchestrated via Docker Compose, featuring:
 
-### A. Installer dépendances
-```bash
-poetry install
-cp .env.example .env
-```
+MLOps Pipeline: Automated training, evaluation, and quality gating for LightGBM models using MLflow.
 
-### B. Lancer stack Docker
-```bash
+RAG Engine: Vector search using ChromaDB and SentenceTransformers for context-aware LLM responses.
+
+Event Streaming: Apache Kafka integration for prediction logging, auditing, and decoupled data processing.
+
+API Gateway: High-performance FastAPI backend exposing model inference and metrics.
+
+Next-Gen UI: A reactive Next.js 14 dashboard for real-time monitoring, latency tracking, and system health checks.
+
+🚀 Technical Stack
+Backend & AI
+Framework: FastAPI (Python)
+
+ML Framework: LightGBM (Tabular), LangChain/Custom (RAG)
+
+Experiment Tracking: MLflow (Registry & Artifacts)
+
+Vector Store: ChromaDB
+
+Storage: MinIO (S3 compatible object storage)
+
+Streaming: Apache Kafka + Zookeeper
+
+Frontend & Dashboard
+Framework: Next.js 14 (App Router)
+
+Styling: Tailwind CSS + Shadcn/UI
+
+Visualization: Recharts (Real-time latency & throughput graphs)
+
+State Management: TanStack Query
+
+⚡ Key Features
+1. Complete MLOps Lifecycle
+Automated pipeline handling tabular data (Churn Prediction):
+
+Training: LightGBM implementation.
+
+Auto-Evaluation: Metrics calculation (Accuracy, F1, AUC).
+
+Quality Gate: Strict thresholds before model promotion to "Production".
+
+Registry: Full artifact versioning in MLflow with automatic fallback mechanisms.
+
+2. Retrieval-Augmented Generation (RAG)
+A specialized subsystem for document intelligence:
+
+Embeddings: sentence-transformers/all-MiniLM-L6-v2.
+
+Ingestion: PDF/Doc indexing stored in rag/docs/.
+
+Inference: Returns Answer + Source Context + Latency metrics + Tier status.
+
+3. Real-Time Observability
+The UI provides a "Control Tower" view (as seen in the screenshots):
+
+Health Checks: Live status of API Gateway.
+
+Latency Trends: P95 and Average latency tracking for both Classifier and LLM endpoints.
+
+Kafka Throughput: Visualization of message volume and error rates.
+
+Model Snapshots: JSON view of currently loaded models and RAG configurations.
+
+4. Kafka Audit Trails
+Every prediction request is asynchronously produced to a Kafka topic, enabling:
+
+Decoupled logging.
+
+Future integration with data lakes (Postgres/BigQuery).
+
+Real-time drift detection replay.
+
+📦 Project Structure
+Bash
+
+ASFOTEC-MLStack
+├── apps
+│   ├── api              # FastAPI Gateway & Business Logic
+│   └── ui               # Next.js Dashboard & Visualization
+├── infra
+│   └── docker           # Docker Compose & Configs (Kafka, MLflow, MinIO)
+├── mlops
+│   ├── training         # Model training scripts
+│   ├── eval             # Evaluation & Metric computation
+│   └── quality_gate.py  # Production promotion logic
+├── rag                  # RAG Engine, Vector Store & Documents
+├── docs                 # Architecture & Deployment documentation
+└── scripts              # Utility scripts (Kafka consumers, Init)
+🛠 Getting Started
+Prerequisites
+Docker & Docker Compose
+
+Python 3.10+ (for local dev)
+
+Node.js 18+ (for UI dev)
+
+1. Initialization
+The project includes a unified orchestrator script to set up the environment, spin up containers, and initialize the ML pipeline.
+
+Bash
+
+# Clone the repo
+git clone https://github.com/your-org/ASFOTEC-MLStack.git
+
+# Install dependencies & Init environment
+bash asfotec_init.sh
+2. Manual Docker Launch
+If you prefer manual control:
+
+Bash
+
 make up
-```
+3. Accessing the Services
+Dashboard UI: http://localhost:4000
 
-### C. Tester API
-```bash
-curl http://localhost:8000/health
-```
+API Documentation (Swagger): http://localhost:8000/docs
 
-### D. Lancer interface UI
-```bash
-cd apps/ui
-npm install
-npm run preview
-```
-*L'UI sera accessible sur http://localhost:4000*
+MLflow UI: http://localhost:5000
 
----
+🔌 API Reference
+The stack exposes RESTful endpoints for immediate inference:
 
-## 🧪 4. Exemples de requêtes
+Tabular Prediction (Classifier)
+Bash
 
-### Classifier
-```bash
 curl -X POST http://localhost:8000/predict/classifier \
   -H "Content-Type: application/json" \
-  -d '{"features":{"tenure":12,"MonthlyCharges":70}}'
-```
+  -d '{"features":{"tenure":12, "MonthlyCharges":70.5, "TotalCharges": 850}}'
+RAG Query (LLM)
+Bash
 
-### RAG
-```bash
 curl -X POST http://localhost:8000/predict/llm \
   -H "Content-Type: application/json" \
-  -d '{"query":"Explique l architecture ASFOTEC-MLStack"}'
-```
+  -d '{"query":"Explain the MLOps lifecycle defined in the docs"}'
+Response includes grounded answers and source citations.
 
-**Résultat :**
-```json
-{
- "answer": "...",
- "sources": [...],
- "llm_tier": "mock-local",
- "latency_ms": 77.74
-}
-```
+☁️ Deployment & Cloud Run
+This stack is designed to be cloud-agnostic.
 
----
+Stateless API: Ready for Google Cloud Run or AWS Fargate.
 
-## 📈 5. Pourquoi ce projet impressionne
+External State: Configurable to connect to managed services (RDS for DB, Confluent for Kafka, S3 for Artifacts).
 
-- **livré en 4h** avec specs professionnelles
-- **architecture complète et cohérente**
-- **très proche d’une mise en prod réelle**
-- **entièrement modulaire**
-- **lisible et éducatif**
-- **robuste et démonstratif**
-- **idéal pour entretien / portfolio / consulting**
+CI/CD: GitHub Actions workflows compatible.
 
-C’est une preuve directe de capacité E2E :
-**MLOps + Backend + RAG + Docker + Kafka + UI + MLflow** dans un temps contraint.
+See docs/DEPLOY_CLOUD_RUN.md for production configuration.
 
----
-
-## 🌐 6. Déploiement futur (GCP Cloud Run)
-
-Le projet est déjà prêt pour :
-- déploiement stateless API
-- stockage artefacts externe
-- Cloud SQL + PubSub
-- CI/CD GitHub Actions
-- Terraform IaC
-
-Consultez `docs/DEPLOY_CLOUD_RUN.md` pour plus de détails.
-
----
-
-## 📄 7. Licence
-MIT.
-
----
-
-## 🙌 8. Contact
-**ASFOTEC — Make IT Simple**
+🙌 Contact
+ASFOTEC — Make IT Simple
