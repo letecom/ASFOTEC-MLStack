@@ -11,6 +11,8 @@ Ce repository démontre ce qui peut être livré en 4 heures réelles, en suivan
 **Le résultat :**
 Une stack d’entreprise complète, modulaire, stable, documentée, exploitable en production.
 
+<img width="1920" height="919" alt="ASFOTEC MLStack Control- localhost" src="https://github.com/user-attachments/assets/1dffa1c5-86e4-45f0-923e-7b3844c0365d" />
+
 ---
 
 ## 🚀 1. Fonctionnalités principales
