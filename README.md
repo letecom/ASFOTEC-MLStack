@@ -14,8 +14,6 @@
 
 [Features](#-key-features) • [Architecture](#-architecture-overview) • [Quick Start](#-getting-started) • [API Docs](#-api-reference) • [Deployment](#️-deployment--cloud-run)
 
-<img width="1920" height="919" alt="ASFOTEC MLStack Control- localhost" src="https://github.com/user-attachments/assets/92561a05-089b-4f29-8970-a0b3daf0f2eb" />
-
 
 </div>
 
@@ -39,7 +37,7 @@
 
 **ASFOTEC-MLStack** unifies traditional **MLOps** (Tabular), **Generative AI** (RAG), **Real-time Streaming** (Kafka), and a modern **Observability Dashboard** into a single, deployable stack.
 
-![ASFOTEC MLStack Control](https://via.placeholder.com/800x400?text=Dashboard+Screenshot)
+<img width="1920" height="919" alt="ASFOTEC MLStack Control- localhost" src="https://github.com/user-attachments/assets/92561a05-089b-4f29-8970-a0b3daf0f2eb" />
 
 ---
 
@@ -223,7 +221,6 @@ curl -X POST http://localhost:8000/predict/llm \
 ```
 
 > 💡 Response includes grounded answers and source citations.
->>>>>>> 49a3b68 (Upgrade README.md with GitHub-flair formatting)
 
 Stateless API: Ready for Google Cloud Run or AWS Fargate.
 
