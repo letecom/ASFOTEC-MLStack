@@ -14,6 +14,9 @@
 
 [Features](#-key-features) • [Architecture](#-architecture-overview) • [Quick Start](#-getting-started) • [API Docs](#-api-reference) • [Deployment](#️-deployment--cloud-run)
 
+<img width="1920" height="919" alt="ASFOTEC MLStack Control- localhost" src="https://github.com/user-attachments/assets/92561a05-089b-4f29-8970-a0b3daf0f2eb" />
+
+
 </div>
 
 ---
